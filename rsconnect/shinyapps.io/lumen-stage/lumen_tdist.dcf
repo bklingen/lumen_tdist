@@ -1,0 +1,12 @@
+name: lumen_tdist
+title: lumen_tdist
+username: lumen-stage
+account: lumen-stage
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12972457
+bundleId: 9203611
+url: https://lumen-stage.shinyapps.io/lumen_tdist/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
