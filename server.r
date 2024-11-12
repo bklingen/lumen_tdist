@@ -63,6 +63,70 @@ pRound <- function(x) {
 
 shinyServer(function(input, output, session){
   
+  # ## Initial Pop-up
+  # observe({
+  #   showModal(
+  #     modalDialog(
+  #       title = HTML("
+  #         <h4>Conduct Inference on your phone with the <b>Art of Stat: Inference</b> mobile app!</h4>
+  #         "),
+  #       tags$div(
+  #         style = "display: flex; flex-wrap: wrap; gap: 5px;",
+  # 
+  #         tags$div(
+  #           style = "flex: 1;",
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-distribution.png", width = "140", class = "rounded-corners")),
+  #           tags$br(),
+  #           tags$br(),
+  #           tags$a(href = 'https://apps.apple.com/us/app/art-of-stat-distributions/id1564877193?platform=iphone',
+  #                  tags$img(src = "AppStoreLogoApple.png", width = "140")),
+  #           tags$br(),
+  #           tags$br(),
+  #           tags$a(href = 'https://play.google.com/store/apps/details?id=com.artofstat.distributions&hl=en_US',
+  #                  tags$img(src = "AppStoreLogoAndroid1.png", width = "140"))
+  #         ),
+  # 
+  #         tags$div(
+  #           style = "flex: 1.2;",
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "image0.png", width = "190", class = "rounded-corners"))
+  #         ),
+  # 
+  #         tags$div(
+  #           style = "flex: 1.2;",
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "image1.png", width = "190", class = "rounded-corners"))
+  #         )
+  #       ),
+  #       footer = tagList(
+  #         tags$div(
+  #           style = "flex: 1;",
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-distributions.png", width = "90", class = "rounded-corners")),
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-explore-data.png", width = "90", class = "rounded-corners")),
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-inference.png", width = "90", class = "rounded-corners")),
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-regression.png", width = "90", class = "rounded-corners")),
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-concepts.png", width = "90", class = "rounded-corners")),
+  #           tags$a(href = 'https://artofstat.com/mobile-apps',
+  #                  tags$img(src = "app-resampling.png", width = "90", class = "rounded-corners")),
+  #         ),
+  #         HTML("<big>Search for <b>Art of Stat</b> in the App Store.<br>For more information <a href=https://artofstat.com/mobile-apps>click here</a>.</big> <br>"),
+  #         tags$br(),
+  #         modalButton("Dismiss")
+  #       ),
+  #       size = "m", #c("m", "s", "l"),
+  #       easyClose = TRUE,
+  #       fade = TRUE
+  #     )
+  #   )
+  # })
+  
+  
   observeEvent(list(input$ownParam, input$df0), {
     if (input$ownParam) {
       df0 <- input$df0  
@@ -80,7 +144,7 @@ shinyServer(function(input, output, session){
     updateNumericInput(session,"df2", value=input$df)
   })
   
-  plots <- reactiveValues(x=seq(-5.4,5.4,length.out=350), plot=NULL)
+  plots <- reactiveValues(x=seq(-5.4,5.4,length.out=350), plot_t=NULL, plot_prob=NULL, plot_quan=NULL)
   
   # reactive plot for Explore tab
   output$graph <- renderPlot({
@@ -91,7 +155,7 @@ shinyServer(function(input, output, session){
     plot <- p  + scale_x_continuous(breaks=seq(-5,5,1)) + labs(title=main)
     #gt <- ggplot_gtable(ggplot_build(plot))
     ##gt$layout$clip[gt$layout$name == "panel"] <- "off"
-    plots$plot <- plot
+    plots$plot_t <- plot
     #grid.draw(gt)
     return(plot)
   })
@@ -180,7 +244,7 @@ shinyServer(function(input, output, session){
     plot <- basic.plot + ggtitle(label=main, subtitle=subtitle) + 
       scale_x_continuous(breaks=breaks1) +
       coord_cartesian(clip = "off")
-    plots$plot <- plot
+    plots$plot_prob <- plot
     return(plot)
   })
   
@@ -300,7 +364,7 @@ shinyServer(function(input, output, session){
     plot <- basic.plot + labs(title=main, subtitle=subtitle) +
       scale_x_continuous(breaks=breaks1) + #expand=expansion()
       coord_cartesian(clip = "off")
-    plots$plot <- plot
+    plots$plot_quan <- plot
     return(plot)
   })
   
@@ -347,7 +411,7 @@ shinyServer(function(input, output, session){
     filename = paste('tDist.png'),
     content = function(file) {
       png(file, height=350, width=750)
-      print(plots$plot)
+      print(plots$plot_t)
       dev.off()
     },
     contentType = "image/png"
@@ -358,7 +422,7 @@ shinyServer(function(input, output, session){
     filename = paste('tDist_Probability.png'),
     content = function(file) {
       png(file, height=350, width=750)
-      print(plots$plot)
+      print(plots$plot_prob)
       dev.off()
     },
     contentType = "image/png"
@@ -369,7 +433,7 @@ shinyServer(function(input, output, session){
     filename = paste('tDist_Percentile.png'),
     content = function(file) {
       png(file, height=350, width=750)
-      print(plots$plot)
+      print(plots$plot_quan)
       dev.off()
     },
     contentType = "image/png"

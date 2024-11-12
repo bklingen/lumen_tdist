@@ -6,6 +6,7 @@ library(shinyWidgets)
 
 navbarPage(
   title=HTML("<b style='color:black;'>The t Distribution</b>"),
+  #title=a(tags$b("The t Distribution"), href='http://www.artofstat.com'),
   header = tags$head(
     # Note the wrapping of the string in HTML()
     tags$style(HTML("
@@ -64,31 +65,28 @@ navbarPage(
         #tags$br(),
         h5(tags$b("Available on mobile:")),
         div(class="row",
-            # div(class="column1",
-            #     a(img(src="IconArtofStat.png", width = "85px", class = "rounded-corners"), 
-            #       href='https://artofstat.com/mobile-apps', 
-            #       target="_blank"),
-            # ),
             div(class="column1",
-                a(img(src="IconDistribution512.png", width = "85px", class = "rounded-corners"), 
-                  href='https://artofstat.com/mobile-apps', 
+                a(img(src="app-distributions.png", width = "85px", class = "rounded-corners"),
+                  href='https://artofstat.com/mobile-apps',
                   target="_blank"),
-            )
+            ),
             # div(class="column2",
-            #     a(img(src="AppStoreLogoApple.png", width="125px"), 
-            #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone', 
+            #     a(img(src="AppStoreLogoApple.png", width="125px"),
+            #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone',
             #       target="_blank"),
             #     br(),
-            #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"), 
-            #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata', 
+            #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"),
+            #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata',
             #       target="_blank"
-            #       ),
+            #     ),
             # )
         ),
         tags$p(
           "More information ",
           tags$a(href = "https://artofstat.com/mobile-apps", "here.", target="_blank")
-        )
+        ),
+        # h5(tags$b("Check out our textbook:")),
+        # a(img(src='textbookFullCover.png', width="150px"), href='http://www.artofstat.com')
       ),
       mainPanel(
         plotOutput("graph", height=400)
@@ -122,34 +120,31 @@ navbarPage(
             column(6, downloadButton("save1", "Download Graph", style = "font-size: 12px; padding: 2px 10px;"))
           ),
           tags$hr(class = "custom-hr"),
+          #tags$br(),
           h5(tags$b("Available on mobile:")),
           div(class="row",
-              # div(class="column1",
-              #     a(img(src="IconArtofStat.png", width = "85px", class = "rounded-corners"), 
-              #       href='https://artofstat.com/mobile-apps', 
-              #       target="_blank"),
-              # ),
               div(class="column1",
-                  a(img(src="IconDistribution512.png", width = "85px", class = "rounded-corners"), 
-                    href='https://artofstat.com/mobile-apps', 
+                  a(img(src="app-distributions.png", width = "85px", class = "rounded-corners"),
+                    href='https://artofstat.com/mobile-apps',
                     target="_blank"),
-              )
+              ),
               # div(class="column2",
-              #     a(img(src="AppStoreLogoApple.png", width="125px"), 
-              #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone', 
+              #     a(img(src="AppStoreLogoApple.png", width="125px"),
+              #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone',
               #       target="_blank"),
               #     br(),
-              #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"), 
-              #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata', 
+              #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"),
+              #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata',
               #       target="_blank"
-              #       ),
+              #     ),
               # )
           ),
           tags$p(
             "More information ",
             tags$a(href = "https://artofstat.com/mobile-apps", "here.", target="_blank")
-          )
-          
+          ),
+          # h5(tags$b("Check out our textbook:")),
+          # a(img(src='textbookFullCover.png', width="150px"), href='http://www.artofstat.com')
       ),
       mainPanel(
         plotOutput("graph1", height=350),
@@ -178,42 +173,40 @@ navbarPage(
              column(6, downloadButton("save2", "Download Graph", style = "font-size: 12px; padding: 2px 10px;"))
            ),
            tags$hr(class = "custom-hr"),
+           #tags$br(),
            h5(tags$b("Available on mobile:")),
            div(class="row",
-               # div(class="column1",
-               #     a(img(src="IconArtofStat.png", width = "85px", class = "rounded-corners"), 
-               #       href='https://artofstat.com/mobile-apps', 
-               #       target="_blank"),
-               # ),
                div(class="column1",
-                   a(img(src="IconDistribution512.png", width = "85px", class = "rounded-corners"), 
-                     href='https://artofstat.com/mobile-apps', 
+                   a(img(src="app-distributions.png", width = "85px", class = "rounded-corners"),
+                     href='https://artofstat.com/mobile-apps',
                      target="_blank"),
-               )
+               ),
                # div(class="column2",
-               #     a(img(src="AppStoreLogoApple.png", width="125px"), 
-               #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone', 
+               #     a(img(src="AppStoreLogoApple.png", width="125px"),
+               #       href='https://apps.apple.com/us/app/art-of-stat-explore-data/id1599474757?platform=iphone',
                #       target="_blank"),
                #     br(),
-               #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"), 
-               #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata', 
+               #     a(img(src="AppStoreLogoAndroid1.png",width="125px",class="image2"),
+               #       href='https://play.google.com/store/apps/details?id=com.artofstat.exploredata',
                #       target="_blank"
-               #       ),
+               #     ),
                # )
            ),
            tags$p(
              "More information ",
              tags$a(href = "https://artofstat.com/mobile-apps", "here.", target="_blank")
-           )
-       ),
-       mainPanel(
-          plotOutput("graph2", height=350),
-          br(),
-          #maybe include box with results below graph
-          conditionalPanel("input.perc=='lower'", uiOutput("qcaption1"), br(), tableOutput("qprobtable1")),
-          conditionalPanel("input.perc=='upper'", uiOutput("qcaption2"), br(), tableOutput("qprobtable2")),
-          conditionalPanel("input.perc=='int'", uiOutput("qcaption3"), br(), tableOutput("qprobtable3"))
-       )
+           ),
+           # h5(tags$b("Check out our textbook:")),
+           # a(img(src='textbookFullCover.png', width="150px"), href='http://www.artofstat.com')
+      ),
+      mainPanel(
+        plotOutput("graph2", height=350),
+        br(),
+        #maybe include box with results below graph
+        conditionalPanel("input.perc=='lower'", uiOutput("qcaption1"), br(), tableOutput("qprobtable1")),
+        conditionalPanel("input.perc=='upper'", uiOutput("qcaption2"), br(), tableOutput("qprobtable2")),
+        conditionalPanel("input.perc=='int'", uiOutput("qcaption3"), br(), tableOutput("qprobtable3"))
+      )
     ) #end sidebarLayout
   ) #end 3nd tabpanel
 ) #end navbar
